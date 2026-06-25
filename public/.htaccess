@@ -1,0 +1,30 @@
+# Security headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Deny access to includes directory
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Force HTTPS in production (uncomment when SSL is configured)
+    # RewriteCond %{HTTPS} off
+    # RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    RewriteRule ^includes/ - [F,L]
+
+    # Clean URLs: /menu -> menu.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^([a-z0-9-]+)/?$ $1.php [L]
+</IfModule>
+
+# Disable directory listing
+Options -Indexes
+
+# Protect sensitive files
+<FilesMatch "\.(env|sql|md)$">
+    Require all denied
+</FilesMatch>

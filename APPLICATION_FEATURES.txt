@@ -1,0 +1,295 @@
+================================================================================
+THE BAKER BEST — APPLICATION OVERVIEW & FEATURES
+================================================================================
+
+Project Name:    The Baker Best
+Type:            Multipage marketing website with online ordering inquiries
+Purpose:         Promote an artisan bakery business, showcase products, and
+                 allow customers to submit pickup orders and contact messages
+                 online.
+
+Developed By:    SweetByte Designs (proprietary)
+Tech Stack:      LAMP — PHP 8+, MySQL 8+, HTML5, CSS3, JavaScript
+Dependencies:   PHPMailer (email), Swiper.js (slider), GLightbox (gallery)
+
+
+================================================================================
+WHAT THIS APPLICATION IS ABOUT
+================================================================================
+
+The Baker Best is a full-featured bakery website for a fictional artisan
+bakery. It presents the brand story, displays a database-driven menu of breads,
+pastries, cakes, seasonal items, and beverages, and lets visitors place
+pickup orders or send contact messages.
+
+Orders are inquiry-based (not a shopping cart or payment gateway). Customers
+describe what they want, choose a pickup date, and the bakery confirms by
+email or phone. All submissions are stored in MySQL and the admin receives an
+email notification.
+
+The site is designed for local businesses: responsive, accessible, SEO-friendly,
+and ready for production deployment on Apache hosting (e.g. XAMPP locally or
+Linux hosting in production).
+
+
+================================================================================
+WEBSITE PAGES (6 MAIN PAGES + 2 SUCCESS PAGES)
+================================================================================
+
+1. HOME (index.php)
+   - Hero image slider with 3 slides (Swiper.js)
+   - Call-to-action buttons: View Menu, Order Now, Explore Pastries, Order a Cake
+   - "Our Story" introduction with link to About page
+   - Featured & Seasonal items loaded from database (up to 6 featured menu items)
+   - Instagram feed placeholder (ready for SnapWidget or Elfsight embed)
+   - JSON-LD structured data (Schema.org Bakery type)
+
+2. ABOUT US (about.php)
+   - Family story and bakery history
+   - Mission & Values section (Artisan Craft, Local Sourcing, Community First)
+   - Meet Our Team section with team member cards
+   - Ingredient Philosophy section
+
+3. MENU (menu.php)
+   - Full menu loaded from MySQL database
+   - Categories: Breads, Pastries, Cakes, Seasonal, Beverages
+   - Each item shows: image, name, price, description, allergen tags
+   - Category filter buttons (All, Breads, Pastries, etc.)
+   - Live search by item name
+   - Link to Order Online page
+
+4. ORDER ONLINE (order.php)
+   - Order inquiry form with fields:
+     * Full Name (required)
+     * Email (required)
+     * Phone (required)
+     * Item(s) / Order Details (required, free text)
+     * Preferred Pickup Date (required, cannot be in the past)
+     * Additional Message (optional — allergies, special requests)
+   - Client-side and server-side validation
+   - CSRF protection and rate limiting
+   - Saves order to database and emails admin
+   - Redirects to Order Success page on completion
+
+5. GALLERY (gallery.php)
+   - Photo grid loaded from database
+   - Lightbox viewer (GLightbox) — click to enlarge, navigate between images
+   - Image captions displayed on hover and in lightbox
+   - Categories in database: bakery, products, events, team
+
+6. CONTACT US (contact.php)
+   - Business address, phone, email
+   - Hours of operation table
+   - Social media links (Instagram, Facebook)
+   - Contact message form (name, email, message)
+   - Embedded Google Maps iframe
+   - JSON-LD structured data (Schema.org LocalBusiness type)
+
+7. ORDER SUCCESS (order-success.php)
+   - Confirmation message after successful order submission
+
+8. CONTACT SUCCESS (contact-success.php)
+   - Confirmation message after successful contact form submission
+
+
+================================================================================
+CORE FEATURES
+================================================================================
+
+--- DESIGN & USER EXPERIENCE ---
+
+  • Responsive mobile-first layout (375px, 768px, 1024px, 1440px breakpoints)
+  • Warm artisan color palette and custom typography (Lato + Sacramento fonts)
+  • Sticky site header with logo and main navigation
+  • Mobile hamburger menu with keyboard accessibility
+  • Menu dropdown in navigation (All Items, Breads, Pastries, Cakes, etc.)
+  • Active page highlighting in navigation
+  • Skip-to-main-content link for screen readers
+  • Footer with quick links, contact info, hours, and social icons
+
+--- HERO SLIDER (HOME PAGE) ---
+
+  • Swiper.js carousel with 3 slides
+  • Auto-play (5 second interval, pauses on hover)
+  • Pagination dots and prev/next arrows
+  • Loop mode and accessibility labels
+
+--- DATABASE-DRIVEN MENU ---
+
+  • Menu items stored in MySQL (menu_items table)
+  • Fields: name, category, price, description, allergens, image, featured flag
+  • Featured items shown on home page
+  • Category filter: show All or filter by Breads, Pastries, Cakes, Seasonal, Beverages
+  • Search: filter items by name in real time
+  • Allergen tags displayed as labels on each item
+  • Price formatting (e.g. $7.50)
+  • Sample seed data: 19 menu items across all categories
+
+--- GALLERY ---
+
+  • Images stored in MySQL (gallery_images table)
+  • Responsive grid layout
+  • GLightbox lightbox: full-size view, touch navigation, fade effects
+  • Sample seed data: 12 gallery images
+
+--- ORDER & CONTACT FORMS ---
+
+  • Order form: saves to orders table with status (pending, confirmed, completed)
+  • Contact form: saves to contact_messages table
+  • Client-side validation (JavaScript) before submit
+  • Server-side validation (PHP) on API endpoints
+  • Form error messages with flash session storage
+  • Old input preserved on validation failure (user does not re-type everything)
+  • Success pages after successful submission
+
+--- EMAIL NOTIFICATIONS ---
+
+  • PHPMailer via SMTP
+  • Admin receives HTML email when order or contact form is submitted
+  • Reply-To set to customer's email for easy response
+  • Configurable SMTP settings (Mailtrap recommended for local testing)
+
+--- SECURITY ---
+
+  • CSRF tokens on all form submissions
+  • Rate limiting: max 5 submissions per hour per IP (configurable)
+  • XSS protection via htmlspecialchars on all output
+  • PDO prepared statements for database queries
+  • Apache security headers (X-Content-Type-Options, X-Frame-Options, Referrer-Policy)
+  • Includes directory blocked from web access
+  • Directory listing disabled
+  • Sensitive file types (.env, .sql, .md) blocked from direct access
+
+--- SEO (SEARCH ENGINE OPTIMIZATION) ---
+
+  • Unique page title and meta description per page
+  • Canonical URLs
+  • robots meta tag (index, follow)
+  • JSON-LD structured data on Home (Bakery) and Contact (LocalBusiness)
+  • sitemap.xml listing all main pages
+  • robots.txt for crawler guidance
+  • Semantic HTML structure
+
+--- ACCESSIBILITY ---
+
+  • Semantic HTML5 elements (header, nav, main, footer, article)
+  • ARIA labels on navigation, forms, buttons, and interactive elements
+  • Skip link to main content
+  • Keyboard-accessible mobile menu and dropdowns
+  • Form fields with aria-required and aria-invalid
+  • Alt text on images
+  • Screen-reader-only labels where needed
+
+--- URL & ROUTING ---
+
+  • Clean URLs via Apache mod_rewrite (e.g. /menu instead of /menu.php)
+  • Optional HTTPS redirect (commented in .htaccess for production)
+
+
+================================================================================
+DATABASE STRUCTURE (MySQL — baker_best)
+================================================================================
+
+Table: orders
+  - Stores online order inquiries
+  - Fields: id, name, email, phone, items, pickup_date, message, status, created_at
+  - Status values: pending, confirmed, completed
+
+Table: contact_messages
+  - Stores contact form submissions
+  - Fields: id, name, email, message, created_at
+
+Table: gallery_images
+  - Stores gallery photo metadata
+  - Fields: id, file_path, caption, category, sort_order
+
+Table: menu_items
+  - Stores bakery menu products
+  - Fields: id, name, category, price, description, allergens, image_path,
+            is_featured, sort_order
+  - Categories: Breads, Pastries, Cakes, Seasonal, Beverages
+
+
+================================================================================
+INTEGRATIONS & PLACEHOLDERS
+================================================================================
+
+  • Google Maps — embedded iframe on Contact page (replace with real address)
+  • Instagram — placeholder on Home page (replace with SnapWidget or Elfsight)
+  • Facebook & Instagram — social links in header and footer (update URLs)
+  • Google Search Console & GA4 — recommended for production (not built-in)
+
+
+================================================================================
+CONFIGURATION
+================================================================================
+
+Configuration file: public/includes/config.php (copy from config.example.php)
+
+Settings:
+  - Database: host, name, user, password, charset
+  - SMTP: host, port, user, password, from email/name
+  - admin_email: where notifications are sent
+  - site_url: base URL for links and assets
+  - site_name: business name
+  - rate_limit: max_attempts (default 5), window_seconds (default 3600)
+  - debug: true for development, false for production
+
+
+================================================================================
+PROJECT STRUCTURE
+================================================================================
+
+Siya/
+├── public/                 Apache document root
+│   ├── index.php           Home page
+│   ├── about.php           About Us
+│   ├── menu.php            Menu
+│   ├── order.php           Order Online
+│   ├── gallery.php         Gallery
+│   ├── contact.php         Contact Us
+│   ├── order-success.php   Order confirmation
+│   ├── contact-success.php Contact confirmation
+│   ├── api/                Form submission endpoints
+│   │   ├── submit-order.php
+│   │   └── submit-contact.php
+│   ├── includes/           PHP bootstrap, config, helpers, security, mail
+│   ├── assets/             CSS, JavaScript, images
+│   ├── sitemap.xml
+│   ├── robots.txt
+│   └── .htaccess
+├── sql/
+│   ├── schema.sql          Database tables
+│   └── seed.sql            Sample menu and gallery data
+├── vendor/                 Composer dependencies (PHPMailer)
+├── composer.json
+└── README.md
+
+
+================================================================================
+WHAT THIS APPLICATION DOES NOT INCLUDE
+================================================================================
+
+  • No admin panel or dashboard (orders/messages stored in DB only)
+  • No online payment or shopping cart
+  • No user accounts or login system
+  • No real-time order tracking for customers
+  • No inventory management
+  • No built-in analytics (GA4 must be added manually)
+
+
+================================================================================
+SUMMARY
+================================================================================
+
+The Baker Best is a complete bakery marketing website built on PHP and MySQL.
+It lets a local artisan bakery showcase its story, menu, and photos, and
+accept pickup order inquiries and contact messages securely. The site is
+responsive, accessible, SEO-ready, and suitable for deployment on standard
+Apache/PHP hosting with email and database configuration.
+
+For setup instructions, see README.md in the project root.
+
+================================================================================
+End of document
+================================================================================
