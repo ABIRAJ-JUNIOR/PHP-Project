@@ -28,7 +28,7 @@ require __DIR__ . '/includes/header.php';
                 <p>Today, our team of passionate bakers continues that tradition, waking before dawn to ensure every loaf, croissant, and cake that leaves our doors is something we'd proudly serve at our own table.</p>
             </div>
             <div>
-                <img src="<?= e(asset('images/team/founder.svg')) ?>" alt="Maria and James, founders of The Baker Best" width="600" height="450" loading="lazy" style="border-radius: var(--radius-lg);">
+                <img src="<?= e(asset('images/team/founder.jpg')) ?>" alt="Maria and James, founders of The Baker Best" width="600" height="450" loading="lazy" style="border-radius: var(--radius-lg);">
             </div>
         </div>
     </div>
@@ -69,7 +69,7 @@ require __DIR__ . '/includes/header.php';
         <div class="card-grid card-grid--3">
             <article class="card">
                 <div class="card__image">
-                    <img src="<?= e(asset('images/team/founder.svg')) ?>" alt="Maria Lopez, Head Baker and Co-founder" width="400" height="300" loading="lazy">
+                    <img src="<?= e(asset('images/team/founder.jpg')) ?>" alt="Maria Lopez, Head Baker and Co-founder" width="400" height="300" loading="lazy">
                 </div>
                 <div class="card__body">
                     <h3 class="card__title">Maria Lopez</h3>
@@ -78,7 +78,7 @@ require __DIR__ . '/includes/header.php';
             </article>
             <article class="card">
                 <div class="card__image">
-                    <img src="<?= e(asset('images/team/baker-1.svg')) ?>" alt="James Lopez, Pastry Chef and Co-founder" width="400" height="300" loading="lazy">
+                    <img src="<?= e(asset('images/team/baker-1.jpg')) ?>" alt="James Lopez, Pastry Chef and Co-founder" width="400" height="300" loading="lazy">
                 </div>
                 <div class="card__body">
                     <h3 class="card__title">James Lopez</h3>
@@ -87,7 +87,7 @@ require __DIR__ . '/includes/header.php';
             </article>
             <article class="card">
                 <div class="card__image">
-                    <img src="<?= e(asset('images/team/baker-2.svg')) ?>" alt="Sophie Chen, Lead Pastry Baker" width="400" height="300" loading="lazy">
+                    <img src="<?= e(asset('images/team/baker-2.jpg')) ?>" alt="Sophie Chen, Lead Pastry Baker" width="400" height="300" loading="lazy">
                 </div>
                 <div class="card__body">
                     <h3 class="card__title">Sophie Chen</h3>
@@ -109,7 +109,7 @@ require __DIR__ . '/includes/header.php';
                 <p>We never use artificial preservatives, flavors, or colors. If it wouldn't be in Grandma Rose's pantry, it won't be in our kitchen. Every ingredient list is short, honest, and pronounceable.</p>
             </div>
             <div>
-                <img src="<?= e(asset('images/gallery/baker-kneading.svg')) ?>" alt="Baker hand-kneading dough with locally sourced flour" width="600" height="450" loading="lazy" style="border-radius: var(--radius-lg);">
+                <img src="<?= e(asset('images/gallery/baker-kneading.jpg')) ?>" alt="Baker hand-kneading dough with locally sourced flour" width="600" height="450" loading="lazy" style="border-radius: var(--radius-lg);">
             </div>
         </div>
     </div>

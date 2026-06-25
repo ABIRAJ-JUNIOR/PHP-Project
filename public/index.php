@@ -43,7 +43,7 @@ $structuredData = json_encode([
     ],
     'servesCuisine' => 'Bakery',
     'priceRange' => '$$',
-    'image' => asset('images/hero/hero-1.svg'),
+    'image' => asset('images/hero/hero-1.jpg'),
 ], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT | JSON_HEX_TAG);
 
 require __DIR__ . '/includes/header.php';
@@ -53,7 +53,7 @@ require __DIR__ . '/includes/header.php';
     <div class="swiper hero-swiper">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
-                <img src="<?= e(asset('images/hero/hero-1.svg')) ?>" alt="Fresh artisan bread cooling on wooden racks" width="1200" height="600" loading="eager">
+                <img src="<?= e(asset('images/hero/hero-1.jpg')) ?>" alt="Fresh artisan bread cooling on wooden racks" width="1200" height="600" loading="eager">
                 <div class="hero__overlay">
                     <div class="hero__content">
                         <h1>The Baker Best</h1>
@@ -66,7 +66,7 @@ require __DIR__ . '/includes/header.php';
                 </div>
             </div>
             <div class="swiper-slide">
-                <img src="<?= e(asset('images/hero/hero-2.svg')) ?>" alt="Display of golden croissants and pastries" width="1200" height="600" loading="lazy">
+                <img src="<?= e(asset('images/hero/hero-2.jpg')) ?>" alt="Display of golden croissants and pastries" width="1200" height="600" loading="lazy">
                 <div class="hero__overlay">
                     <div class="hero__content">
                         <h1>Artisan Pastries</h1>
@@ -78,7 +78,7 @@ require __DIR__ . '/includes/header.php';
                 </div>
             </div>
             <div class="swiper-slide">
-                <img src="<?= e(asset('images/hero/hero-3.svg')) ?>" alt="Baker decorating a celebration cake" width="1200" height="600" loading="lazy">
+                <img src="<?= e(asset('images/hero/hero-3.jpg')) ?>" alt="Baker decorating a celebration cake" width="1200" height="600" loading="lazy">
                 <div class="hero__overlay">
                     <div class="hero__content">
                         <h1>Celebration Cakes</h1>
@@ -110,7 +110,7 @@ require __DIR__ . '/includes/header.php';
                 <a href="<?= e(page_url('about.php')) ?>" class="btn btn--secondary">Learn More About Us</a>
             </div>
             <div>
-                <img src="<?= e(asset('images/team/founder.svg')) ?>" alt="Founder of The Baker Best in the bakery" width="600" height="450" loading="lazy" style="border-radius: var(--radius-lg);">
+                <img src="<?= e(asset('images/team/founder.jpg')) ?>" alt="Founder of The Baker Best in the bakery" width="600" height="450" loading="lazy" style="border-radius: var(--radius-lg);">
             </div>
         </div>
     </div>
