@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-label="Handcrafted with love">
-  <defs><linearGradient id="g" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#6B4226"/><stop offset="100%" stop-color="#B57842"/></linearGradient></defs>
-  <rect width="800" height="600" fill="url(#g)"/>
-  <ellipse cx="400" cy="340" rx="180" ry="60" fill="#FAF3E7" opacity="0.06"/>
-  <ellipse cx="400" cy="300" rx="120" ry="40" fill="#FAF3E7" opacity="0.05"/>
-</svg>

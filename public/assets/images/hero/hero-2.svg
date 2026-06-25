@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-label="Artisan pastries">
-  <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#A0714B"/><stop offset="100%" stop-color="#6B4226"/></linearGradient></defs>
-  <rect width="800" height="600" fill="url(#g)"/>
-  <ellipse cx="400" cy="340" rx="180" ry="60" fill="#C98A52" opacity="0.1"/>
-  <ellipse cx="400" cy="300" rx="120" ry="40" fill="#C98A52" opacity="0.08"/>
-</svg>
