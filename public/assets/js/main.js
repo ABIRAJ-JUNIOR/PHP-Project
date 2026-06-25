@@ -65,8 +65,8 @@ function initHeroSwiper() {
       clickable: true,
     },
     navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
+      nextEl: '#hero-next',
+      prevEl: '#hero-prev',
     },
     a11y: {
       enabled: true,
