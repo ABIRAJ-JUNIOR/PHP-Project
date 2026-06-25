@@ -152,6 +152,13 @@ require __DIR__ . '/includes/header.php';
                     <li><?= e($line) ?></li>
                     <?php endforeach; ?>
                 </ul>
+                <?php $orderTotal = (float) ($order['total'] ?? 0); ?>
+                <?php if ($orderTotal > 0): ?>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; padding-top: 1rem; border-top: 2px solid var(--color-pastel);">
+                    <strong>Total</strong>
+                    <span style="font-size: 1.35rem; font-weight: 700; color: var(--color-accent);"><?= e(format_price($orderTotal)) ?></span>
+                </div>
+                <?php endif; ?>
             </div>
         </div>
 

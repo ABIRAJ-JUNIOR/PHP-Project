@@ -133,6 +133,10 @@ require __DIR__ . '/includes/header.php';
 
                     <p class="order-list__pickup">
                         Pickup: <strong><?= e(format_pickup_date($order['pickup_date'] ?? '')) ?></strong>
+                        <?php $listTotal = (float) ($order['total'] ?? 0); ?>
+                        <?php if ($listTotal > 0): ?>
+                        &middot; Total: <strong><?= e(format_price($listTotal)) ?></strong>
+                        <?php endif; ?>
                     </p>
 
                     <ul class="order-list__items">

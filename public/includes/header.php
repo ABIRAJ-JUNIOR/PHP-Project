@@ -23,6 +23,8 @@ $cartItemCount = cart_count();
     <meta name="description" content="<?= e($pageDescription) ?>">
     <link rel="canonical" href="<?= e($canonicalUrl) ?>">
     <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#6B4226">
+    <link rel="icon" href="<?= e(asset('images/favicon.svg')) ?>" type="image/svg+xml">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /includes/
 
-Sitemap: http://localhost/sitemap.xml
+Sitemap: http://localhost/Siya/public/sitemap.xml

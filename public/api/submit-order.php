@@ -41,6 +41,8 @@ if ($phone === '' || !preg_match('/^[\d\s\-+().]{7,30}$/', $phone)) {
 }
 if ($pickupDate === '' || strtotime($pickupDate) < strtotime('today')) {
     $errors[] = 'Please select a valid pickup date.';
+} elseif (strtotime($pickupDate) < strtotime('+1 day', strtotime('today'))) {
+    $errors[] = 'Please select a pickup date at least one day in advance.';
 }
 
 $pdo = getDb($config);
@@ -70,9 +72,9 @@ $items = format_order_lines($cartLines);
 
 try {
     $stmt = $pdo->prepare(
-        'INSERT INTO orders (name, email, phone, items, pickup_date, message) VALUES (?, ?, ?, ?, ?, ?)'
+        'INSERT INTO orders (name, email, phone, items, total, pickup_date, message) VALUES (?, ?, ?, ?, ?, ?, ?)'
     );
-    $stmt->execute([$name, $email, $phone, $items, $pickupDate, $message ?: null]);
+    $stmt->execute([$name, $email, $phone, $items, $orderTotal, $pickupDate, $message ?: null]);
     $orderId = (int) $pdo->lastInsertId();
 } catch (PDOException $e) {
     if ($config['debug']) {
@@ -85,18 +87,32 @@ try {
 
 cart_clear();
 
-$html = '<h2>New Order Received</h2>';
-$html .= '<p><strong>Name:</strong> ' . e($name) . '</p>';
-$html .= '<p><strong>Email:</strong> ' . e($email) . '</p>';
-$html .= '<p><strong>Phone:</strong> ' . e($phone) . '</p>';
-$html .= '<p><strong>Order Total:</strong> ' . e(format_price($orderTotal)) . '</p>';
-$html .= '<p><strong>Items:</strong><br>' . nl2br(e($items)) . '</p>';
-$html .= '<p><strong>Pickup Date:</strong> ' . e($pickupDate) . '</p>';
+$orderNumber = format_order_number($orderId);
+
+$adminHtml = '<h2>New Order Received</h2>';
+$adminHtml .= '<p><strong>Order:</strong> ' . e($orderNumber) . '</p>';
+$adminHtml .= '<p><strong>Name:</strong> ' . e($name) . '</p>';
+$adminHtml .= '<p><strong>Email:</strong> ' . e($email) . '</p>';
+$adminHtml .= '<p><strong>Phone:</strong> ' . e($phone) . '</p>';
+$adminHtml .= '<p><strong>Order Total:</strong> ' . e(format_price($orderTotal)) . '</p>';
+$adminHtml .= '<p><strong>Items:</strong><br>' . nl2br(e($items)) . '</p>';
+$adminHtml .= '<p><strong>Pickup Date:</strong> ' . e(format_pickup_date($pickupDate)) . '</p>';
 if ($message) {
-    $html .= '<p><strong>Message:</strong><br>' . nl2br(e($message)) . '</p>';
+    $adminHtml .= '<p><strong>Message:</strong><br>' . nl2br(e($message)) . '</p>';
 }
 
-send_admin_email($config, 'New Order from ' . $name, $html, $email, $name);
+send_admin_email($config, 'New Order ' . $orderNumber . ' from ' . $name, $adminHtml, $email, $name);
+
+$customerHtml = '<h2>Thank you for your order, ' . e($name) . '!</h2>';
+$customerHtml .= '<p>We have received your order <strong>' . e($orderNumber) . '</strong> and will confirm your pickup details shortly.</p>';
+$customerHtml .= '<h3>Order Summary</h3>';
+$customerHtml .= '<p>' . nl2br(e($items)) . '</p>';
+$customerHtml .= '<p><strong>Total:</strong> ' . e(format_price($orderTotal)) . '</p>';
+$customerHtml .= '<p><strong>Pickup Date:</strong> ' . e(format_pickup_date($pickupDate)) . '</p>';
+$customerHtml .= '<p>If you have any questions, call us at <strong>(555) 123-4567</strong> or reply to this email.</p>';
+$customerHtml .= '<p>— The Baker Best</p>';
+
+send_customer_email($config, 'Your Order ' . $orderNumber . ' — The Baker Best', $customerHtml, $email, $name);
 
 flash('order_id', (string) $orderId);
 flash('order_email', $email);

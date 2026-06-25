@@ -113,7 +113,7 @@ require __DIR__ . '/includes/header.php';
                         <label for="order-pickup">Preferred Pickup Date <span class="required" aria-hidden="true">*</span></label>
                         <input type="date" id="order-pickup" name="pickup_date" required
                                value="<?= e($old['pickup_date'] ?? '') ?>"
-                               min="<?= date('Y-m-d') ?>" aria-required="true">
+                               min="<?= date('Y-m-d', strtotime('+1 day')) ?>" aria-required="true">
                         <div class="form-error" id="order-pickup-error" role="alert"></div>
                     </div>
 

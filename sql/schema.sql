@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS orders (
     email VARCHAR(255) NOT NULL,
     phone VARCHAR(30) NOT NULL,
     items TEXT NOT NULL,
+    total DECIMAL(10, 2) NOT NULL DEFAULT 0.00,
     pickup_date DATE NOT NULL,
     message TEXT NULL,
     status ENUM('pending', 'confirmed', 'completed') NOT NULL DEFAULT 'pending',

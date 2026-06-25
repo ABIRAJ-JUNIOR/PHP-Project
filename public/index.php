@@ -44,7 +44,7 @@ $structuredData = json_encode([
     'servesCuisine' => 'Bakery',
     'priceRange' => '$$',
     'image' => asset('images/hero/hero-1.svg'),
-], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
+], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT | JSON_HEX_TAG);
 
 require __DIR__ . '/includes/header.php';
 ?>

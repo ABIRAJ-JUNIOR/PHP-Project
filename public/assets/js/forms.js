@@ -164,11 +164,12 @@ function validatePickupDate(form, fieldId) {
   }
 
   const selected = new Date(value + 'T00:00:00');
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
+  const tomorrow = new Date();
+  tomorrow.setHours(0, 0, 0, 0);
+  tomorrow.setDate(tomorrow.getDate() + 1);
 
-  if (selected < today) {
-    setFieldError(field, errorEl, 'Pickup date cannot be in the past.');
+  if (selected < tomorrow) {
+    setFieldError(field, errorEl, 'Please select a pickup date at least one day in advance.');
     return false;
   }
   clearFieldError(field, errorEl);

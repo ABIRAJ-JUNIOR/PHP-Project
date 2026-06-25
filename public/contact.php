@@ -39,7 +39,7 @@ $structuredData = json_encode([
         ['@type' => 'OpeningHoursSpecification', 'dayOfWeek' => 'Saturday', 'opens' => '08:00', 'closes' => '17:00'],
         ['@type' => 'OpeningHoursSpecification', 'dayOfWeek' => 'Sunday', 'opens' => '08:00', 'closes' => '14:00'],
     ],
-], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
+], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT | JSON_HEX_TAG);
 
 require __DIR__ . '/includes/header.php';
 ?>

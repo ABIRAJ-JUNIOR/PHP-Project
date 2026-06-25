@@ -11,14 +11,18 @@ $currentPage = 'contact';
 require __DIR__ . '/includes/header.php';
 ?>
 
-<div class="success-box">
-    <div class="success-box__icon" aria-hidden="true">✉️</div>
-    <h1>Message Sent!</h1>
-    <p>Thank you for reaching out. We've received your message and will respond as soon as possible.</p>
-    <div class="btn-group" style="margin-top: 2rem;">
-        <a href="<?= e(page_url('index.php')) ?>" class="btn btn--primary">Back to Home</a>
-        <a href="<?= e(page_url('contact.php')) ?>" class="btn btn--secondary">Send Another Message</a>
+<section class="section">
+    <div class="container">
+        <div class="success-box panel">
+            <div class="success-box__icon" aria-hidden="true">✉️</div>
+            <h1>Message Sent!</h1>
+            <p>Thank you for reaching out. We've received your message and will respond as soon as possible.</p>
+            <div class="btn-group" style="margin-top: 2rem;">
+                <a href="<?= e(page_url('index.php')) ?>" class="btn btn--primary">Back to Home</a>
+                <a href="<?= e(page_url('contact.php')) ?>" class="btn btn--secondary">Send Another Message</a>
+            </div>
+        </div>
     </div>
-</div>
+</section>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>

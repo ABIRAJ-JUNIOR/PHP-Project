@@ -51,3 +51,47 @@ function send_admin_email(array $config, string $subject, string $htmlBody, ?str
         return false;
     }
 }
+
+function send_customer_email(array $config, string $subject, string $htmlBody, string $toEmail, string $toName = ''): bool
+{
+    $autoload = dirname(__DIR__, 2) . '/vendor/autoload.php';
+    if (!file_exists($autoload)) {
+        return false;
+    }
+
+    require_once $autoload;
+
+    $smtp = $config['smtp'];
+    if (empty($smtp['user']) && empty($smtp['pass'])) {
+        return false;
+    }
+
+    try {
+        $mail = new PHPMailer(true);
+        $mail->isSMTP();
+        $mail->Host = $smtp['host'];
+        $mail->SMTPAuth = true;
+        $mail->Username = $smtp['user'];
+        $mail->Password = $smtp['pass'];
+        $mail->Port = (int) $smtp['port'];
+        $mail->SMTPSecure = (int) $smtp['port'] === 465
+            ? PHPMailer::ENCRYPTION_SMTPS
+            : PHPMailer::ENCRYPTION_STARTTLS;
+
+        $mail->setFrom($smtp['from_email'], $smtp['from_name']);
+        $mail->addAddress($toEmail, $toName);
+        $mail->addReplyTo($smtp['from_email'], $smtp['from_name']);
+
+        $mail->isHTML(true);
+        $mail->Subject = $subject;
+        $mail->Body = $htmlBody;
+
+        $mail->send();
+        return true;
+    } catch (Exception $e) {
+        if ($config['debug']) {
+            error_log('Customer email send failed: ' . $e->getMessage());
+        }
+        return false;
+    }
+}

@@ -42,5 +42,6 @@ function check_rate_limit(string $action, array $config): bool
 
     $data['attempts'][] = $now;
     file_put_contents($file, json_encode($data), LOCK_EX);
+    chmod($file, 0600);
     return true;
 }
